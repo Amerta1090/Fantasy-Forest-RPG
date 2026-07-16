@@ -159,28 +159,28 @@ export default class PreloaderScene extends Phaser.Scene {
     dirs.forEach((d) => {
       this.anims.create({
         key: `player_idle_${d}`,
-        frames: this.anims.generateFrameNumbers(`player_idle_${d}`, { start: 0, end: 11 }),
+        frames: this.anims.generateFrameNumbers(`player_idle_${d}`, { start: 0, end: 7 }),
         frameRate: 8,
         repeat: -1,
       });
 
       this.anims.create({
         key: `player_run_${d}`,
-        frames: this.anims.generateFrameNumbers(`player_run_${d}`, { start: 0, end: 11 }),
+        frames: this.anims.generateFrameNumbers(`player_run_${d}`, { start: 0, end: 7 }),
         frameRate: 12,
         repeat: -1,
       });
 
       this.anims.create({
         key: `player_atk1_${d}`,
-        frames: this.anims.generateFrameNumbers(`player_atk1_${d}`, { start: 0, end: 11 }),
+        frames: this.anims.generateFrameNumbers(`player_atk1_${d}`, { start: 0, end: 7 }),
         frameRate: 16,
         repeat: 0,
       });
 
       this.anims.create({
         key: `player_atk2_${d}`,
-        frames: this.anims.generateFrameNumbers(`player_atk2_${d}`, { start: 0, end: 11 }),
+        frames: this.anims.generateFrameNumbers(`player_atk2_${d}`, { start: 0, end: 7 }),
         frameRate: 16,
         repeat: 0,
       });
@@ -244,14 +244,14 @@ export default class PreloaderScene extends Phaser.Scene {
 
     this.anims.create({
       key: 'companion_idle',
-      frames: this.anims.generateFrameNumbers('companion_idle', { start: 0, end: 7 }),
+      frames: this.anims.generateFrameNumbers('companion_idle', { start: 0, end: 9 }),
       frameRate: 6,
       repeat: -1,
     });
 
     this.anims.create({
       key: 'companion_walk',
-      frames: this.anims.generateFrameNumbers('companion_walk', { start: 0, end: 7 }),
+      frames: this.anims.generateFrameNumbers('companion_walk', { start: 0, end: 5 }),
       frameRate: 8,
       repeat: -1,
     });

@@ -110,21 +110,24 @@ export default class GameScene extends Phaser.Scene {
   }
 
   updateCompanion(delta) {
+    const targetX = this.player.x - 30;
+    const targetY = this.player.y + 20;
     const dist = Phaser.Math.Distance.Between(
       this.companion.x, this.companion.y,
-      this.player.x - 30, this.player.y + 20,
+      targetX, targetY,
     );
 
     if (dist > 5) {
       const speed = 80;
       const angle = Phaser.Math.Angle.Between(
         this.companion.x, this.companion.y,
-        this.player.x - 30, this.player.y + 20,
+        targetX, targetY,
       );
       this.companion.setVelocity(
         Math.cos(angle) * speed,
         Math.sin(angle) * speed,
       );
+      this.companion.setFlipX(Math.cos(angle) < 0);
       if (this.companion.anims.currentAnim?.key !== 'companion_walk') {
         this.companion.anims.play('companion_walk');
       }

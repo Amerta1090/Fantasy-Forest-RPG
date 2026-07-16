@@ -131,10 +131,9 @@ export default class PreloaderScene extends Phaser.Scene {
       asset('sample(idle&walk)/idle/sprite sheets/idle.png'),
       SPRITE_FRAMES.companionIdle,
     );
-    this.load.spritesheet(
+    this.load.image(
       'companion_walk',
-      asset('sample(idle&walk)/walk/sprite sheets/walk.png'),
-      SPRITE_FRAMES.companionWalk,
+      asset('sample(idle&walk)/walk/sprite sheets/from idle.png'),
     );
 
     // ── Trees, HUD ──
@@ -244,13 +243,6 @@ export default class PreloaderScene extends Phaser.Scene {
       key: 'companion_idle',
       frames: this.anims.generateFrameNumbers('companion_idle', { start: 0, end: 9 }),
       frameRate: 8,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: 'companion_walk',
-      frames: this.anims.generateFrameNumbers('companion_walk', { start: 0, end: 7 }),
-      frameRate: 10,
       repeat: -1,
     });
   }

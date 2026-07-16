@@ -80,12 +80,12 @@ export default class GameScene extends Phaser.Scene {
 
   createCompanion() {
     this.companion = this.physics.add.sprite(
-      WORLD_WIDTH / 2 + 40, WORLD_HEIGHT / 2 + 40,
+      WORLD_WIDTH / 2 + 80, WORLD_HEIGHT / 2,
       'companion_idle',
     );
-    this.companion.setScale(0.6);
-    this.companion.setSize(30, 30);
-    this.companion.setOffset(10, 20);
+    this.companion.setScale(0.4);
+    this.companion.setSize(20, 20);
+    this.companion.setOffset(13, 28);
     this.companion.setDepth(9);
     this.companion.anims.play('companion_idle');
     this.companionMoving = false;
@@ -242,6 +242,7 @@ export default class GameScene extends Phaser.Scene {
         this.player.y + Math.sin(angle) * 30,
       );
       this.companion.setVelocity(0, 0);
+      this.companion.setTexture('companion_idle');
       this.companion.anims.play('companion_idle');
       this.positionBuffer = [{ x: this.player.x, y: this.player.y }];
       return;
@@ -260,12 +261,13 @@ export default class GameScene extends Phaser.Scene {
         Math.sin(angle) * COMPANION_SPEED,
       );
       if (!this.companionMoving) {
-        this.companion.anims.play('companion_walk');
+        this.companion.setTexture('companion_walk');
         this.companionMoving = true;
       }
     } else {
       this.companion.setVelocity(0, 0);
       if (this.companionMoving) {
+        this.companion.setTexture('companion_idle');
         this.companion.anims.play('companion_idle');
         this.companionMoving = false;
       }

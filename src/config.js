@@ -39,7 +39,6 @@ export const SPRITE_FRAMES = {
     frameHeight: 64,
   },
   companionIdle: { frameWidth: 46, frameHeight: 55 },
-  companionWalk: { frameWidth: 90, frameHeight: 87 },
   boarIdle: { frameWidth: 32, frameHeight: 32 },
   boarRun: { frameWidth: 32, frameHeight: 32 },
   beeFly: { frameWidth: 32, frameHeight: 64 },

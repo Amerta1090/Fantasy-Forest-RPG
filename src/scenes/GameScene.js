@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { GAME_WIDTH, GAME_HEIGHT, WORLD_WIDTH, WORLD_HEIGHT, PLAYER_SPEED } from '../config.js';
+import { WORLD_WIDTH, WORLD_HEIGHT, PLAYER_SPEED } from '../config.js';
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -25,16 +25,6 @@ export default class GameScene extends Phaser.Scene {
     this.player.setDepth(10);
     this.player.anims.play('player_idle_down');
 
-    this.companion = this.physics.add.sprite(
-      this.player.x - 30,
-      this.player.y + 20,
-      'companion_idle',
-    );
-    this.companion.setSize(30, 30);
-    this.companion.setOffset(13, 25);
-    this.companion.setDepth(9);
-    this.companion.anims.play('companion_idle');
-
     this.cameras.main.setBounds(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
     this.cameras.main.startFollow(this.player, true, 0.08, 0.08);
     this.cameras.main.setZoom(1);
@@ -54,7 +44,7 @@ export default class GameScene extends Phaser.Scene {
       fontFamily: 'monospace',
     }).setScrollFactor(0).setDepth(100);
 
-    this.playerInfo = this.add.text(10, 30, 'WASD/Arrows: Move | Space: Attack', {
+    this.add.text(10, 30, 'WASD: Move | Space: Attack', {
       fontSize: '12px',
       color: '#aaaaaa',
       fontFamily: 'monospace',
@@ -102,48 +92,15 @@ export default class GameScene extends Phaser.Scene {
       }
     }
 
-    this.updateCompanion(delta);
-
     if (Phaser.Input.Keyboard.JustDown(this.attackKey)) {
       this.doAttack();
-    }
-  }
-
-  updateCompanion(delta) {
-    const targetX = this.player.x - 30;
-    const targetY = this.player.y + 20;
-    const dist = Phaser.Math.Distance.Between(
-      this.companion.x, this.companion.y,
-      targetX, targetY,
-    );
-
-    if (dist > 5) {
-      const speed = 80;
-      const angle = Phaser.Math.Angle.Between(
-        this.companion.x, this.companion.y,
-        targetX, targetY,
-      );
-      this.companion.setVelocity(
-        Math.cos(angle) * speed,
-        Math.sin(angle) * speed,
-      );
-      this.companion.setFlipX(Math.cos(angle) < 0);
-      if (this.companion.anims.currentAnim?.key !== 'companion_walk') {
-        this.companion.anims.play('companion_walk');
-      }
-    } else {
-      this.companion.setVelocity(0, 0);
-      if (this.companion.anims.currentAnim?.key !== 'companion_idle') {
-        this.companion.anims.play('companion_idle');
-      }
     }
   }
 
   doAttack() {
     this.isAttacking = true;
     this.player.setVelocity(0, 0);
-    const animKey = `player_atk1_${this.playerDir}`;
-    this.player.anims.play(animKey);
+    this.player.anims.play(`player_atk1_${this.playerDir}`);
     this.player.once('animationcomplete', () => {
       this.isAttacking = false;
     });

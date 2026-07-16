@@ -29,6 +29,4 @@ export const SPRITE_FRAMES = {
   beeAttack: { frameWidth: 32, frameHeight: 64 },
   snailWalk: { frameWidth: 32, frameHeight: 32 },
   snailDead: { frameWidth: 32, frameHeight: 32 },
-  companionIdle: { frameWidth: 46, frameHeight: 55 },
-  companionWalk: { frameWidth: 180, frameHeight: 58 },
 };

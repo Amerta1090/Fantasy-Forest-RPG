@@ -125,8 +125,22 @@ export default class PreloaderScene extends Phaser.Scene {
       SPRITE_FRAMES.snailDead,
     );
 
+    // ── Companion sprites ──
+    this.load.spritesheet(
+      'companion_idle',
+      asset('sample(idle&walk)/idle/sprite sheets/idle.png'),
+      SPRITE_FRAMES.companionIdle,
+    );
+    this.load.spritesheet(
+      'companion_walk',
+      asset('sample(idle&walk)/walk/sprite sheets/walk.png'),
+      SPRITE_FRAMES.companionWalk,
+    );
+
     // ── Tiles, trees, HUD ──
     this.load.image('tiles', asset('Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png'));
+    this.load.image('buildings', asset('Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png'));
+    this.load.image('rocks', asset('Legacy-Fantasy - High Forest 2.3/Assets/Props-Rocks.png'));
     this.load.image('hud_base', asset('Legacy-Fantasy - High Forest 2.3/HUD/Base-01.png'));
     this.load.image('tree_green', asset('Legacy-Fantasy - High Forest 2.3/Trees/Green-Tree.png'));
     this.load.image('tree_dark', asset('Legacy-Fantasy - High Forest 2.3/Trees/Dark-Tree.png'));
@@ -230,5 +244,18 @@ export default class PreloaderScene extends Phaser.Scene {
       repeat: 0,
     });
 
+    this.anims.create({
+      key: 'companion_idle',
+      frames: this.anims.generateFrameNumbers('companion_idle', { start: 0, end: 9 }),
+      frameRate: 8,
+      repeat: -1,
+    });
+
+    this.anims.create({
+      key: 'companion_walk',
+      frames: this.anims.generateFrameNumbers('companion_walk', { start: 0, end: 7 }),
+      frameRate: 10,
+      repeat: -1,
+    });
   }
 }

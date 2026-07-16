@@ -103,15 +103,15 @@ Explore Forest → Encounter Enemies (Wave) → Fight → Collect Loot (Icons)
 ### Sprint 1: Core Movement & World (3 hari)
 **Goal:** Player bergerak di forest world dengan collision
 
-| Task | Detail | Skills |
-|------|--------|--------|
-| Tilemap | Render forest tilemap dari `Tiles.png` | phaser-core |
-| Collision | Player vs trees, rocks, buildings | phaser-arcade-physics |
-| Camera | Follow player, smooth cam, world bounds | phaser-core |
-| Environment | Place trees (5 varian), buildings, rocks, background | game-feel |
-| Player animasi | Idle ↔ Run animasi smooth transitions | phaser-core |
-| Input | WASD + Arrow keys + gamepad support | input-systems |
-| Kompanion | Spawn companion dari `sample(idle&walk)` | phaser-core |
+| Task | Detail | Skills | Done |
+|------|--------|--------|------|
+| Tilemap | Render forest tilemap dari `Tiles.png` | phaser-core | ✅ |
+| Collision | Player vs trees, rocks, buildings | phaser-arcade-physics | ✅ |
+| Camera | Follow player, deadzone 50x50, world bounds | phaser-core | ✅ |
+| Environment | Place trees (5 varian), buildings, rocks | phaser-arcade-physics | ✅ |
+| Player animasi | Idle ↔ Run animasi smooth transitions + facing indicator | phaser-core | ✅ |
+| Input | WASD + Arrow keys + gamepad support (analog stick + A button) | input-systems | ✅ |
+| Kompanion | Spawn companion, follow delay, leash distance | phaser-core | ✅ |
 
 **Deliverable:** Player bisa explore forest, collision jalan, camera follow, companion ikut.
 

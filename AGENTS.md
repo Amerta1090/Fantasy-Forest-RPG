@@ -135,7 +135,7 @@ nyobagame simple/
 | Sprint | Status | Completed | Notes |
 |--------|--------|-----------|-------|
 | 0 | ✅ DONE | 2026-07-16 | Vite+Phaser3 setup, 4 scenes, all assets loaded, player+companion |
-| 1 | ⏳ PENDING | — | — |
+| 1 | ✅ DONE | 2026-07-16 | Tilemap, collision, camera deadzone, gamepad, companion follow |
 | 2 | ⏳ PENDING | — | — |
 | 3 | ⏳ PENDING | — | — |
 | 4 | ⏳ PENDING | — | Skill tree — core feature |
@@ -172,4 +172,4 @@ nyobagame simple/
 
 ---
 
-*Last Updated: 2026-07-16 | Sprint 0 (done)*
+*Last Updated: 2026-07-16 | Sprint 1 (done)*

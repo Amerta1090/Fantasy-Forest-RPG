@@ -364,7 +364,7 @@ export default class GameScene extends Phaser.Scene {
 
       if (!valid) continue;
 
-      const scale = rng.realBetween(0.6, 1.2);
+      const scale = Phaser.Math.FloatBetween(0.6, 1.2);
       const rock = this.physics.add.staticImage(rx, ry, 'rock_tex');
       rock.setScale(scale);
       rock.setSize(24, 16);

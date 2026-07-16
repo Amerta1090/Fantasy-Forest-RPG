@@ -2,8 +2,12 @@ import Phaser from 'phaser';
 import {
   WORLD_WIDTH, WORLD_HEIGHT, PLAYER_SPEED,
   COMPANION_SPEED, COMPANION_LEASH, COMPANION_FOLLOW_DELAY,
-  CAMERA_DEADZONE, TREE_COUNT, BUILDING_COUNT, ROCK_COUNT,
+  CAMERA_DEADZONE, TREE_COUNT, ROCK_COUNT,
 } from '../config.js';
+
+const GROUND_COLOR = 0x2a3a2a;
+const GROUND_DARK = 0x232f23;
+const ROCK_COLOR = 0x5a5a5a;
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -23,7 +27,6 @@ export default class GameScene extends Phaser.Scene {
     this.createGround();
     this.obstacles = this.physics.add.staticGroup();
     this.placeTrees();
-    this.placeBuildings();
     this.placeRocks();
 
     this.createPlayer();
@@ -39,11 +42,19 @@ export default class GameScene extends Phaser.Scene {
   }
 
   createGround() {
-    this.add.tileSprite(
+    this.add.rectangle(
       WORLD_WIDTH / 2, WORLD_HEIGHT / 2,
       WORLD_WIDTH, WORLD_HEIGHT,
-      'tiles',
+      GROUND_COLOR,
     );
+
+    const rng = new Phaser.Math.RandomDataGenerator(['ground_detail']);
+    for (let i = 0; i < 60; i++) {
+      const gx = rng.integerInRange(0, WORLD_WIDTH);
+      const gy = rng.integerInRange(0, WORLD_HEIGHT);
+      const size = rng.integerInRange(20, 60);
+      this.add.rectangle(gx, gy, size, size, GROUND_DARK, 0.3).setDepth(0);
+    }
   }
 
   createPlayer() {
@@ -272,73 +283,95 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 
+  isOccupied(x, y, minDist, placed) {
+    for (const p of placed) {
+      if (Phaser.Math.Distance.Between(x, y, p.x, p.y) < minDist) return true;
+    }
+    return false;
+  }
+
   placeTrees() {
     const treeKeys = ['tree_green', 'tree_dark', 'tree_red', 'tree_yellow', 'tree_golden'];
     const rng = new Phaser.Math.RandomDataGenerator(['forest_sprint1']);
     const safeZone = 200;
+    const minSeparation = 100;
+    const placed = [];
+    let attempts = 0;
 
-    for (let i = 0; i < TREE_COUNT; i++) {
+    for (let i = 0; i < TREE_COUNT && attempts < 500; i++) {
       let tx, ty;
-      do {
-        tx = rng.integerInRange(50, WORLD_WIDTH - 50);
-        ty = rng.integerInRange(50, WORLD_HEIGHT - 50);
-      } while (
-        Phaser.Math.Distance.Between(tx, ty, WORLD_WIDTH / 2, WORLD_HEIGHT / 2) < safeZone
-      );
+      let valid = false;
+
+      while (!valid && attempts < 500) {
+        tx = rng.integerInRange(80, WORLD_WIDTH - 80);
+        ty = rng.integerInRange(80, WORLD_HEIGHT - 80);
+        attempts++;
+
+        const inSafeZone = Phaser.Math.Distance.Between(
+          tx, ty, WORLD_WIDTH / 2, WORLD_HEIGHT / 2,
+        ) < safeZone;
+
+        if (!inSafeZone && !this.isOccupied(tx, ty, minSeparation, placed)) {
+          valid = true;
+        }
+      }
+
+      if (!valid) continue;
 
       const key = rng.pick(treeKeys);
       const tree = this.physics.add.staticImage(tx, ty, key);
-      tree.setScale(0.15);
-      tree.setSize(tree.width * 0.3, tree.height * 0.15);
-      tree.setOffset(tree.width * 0.35, tree.height * 0.8);
+      tree.setScale(0.12);
+      tree.setSize(50, 30);
+      tree.setOffset(tree.width * 0.5 - 25, tree.height * 0.85);
       tree.refreshBody();
       tree.setDepth(ty);
-    }
-  }
-
-  placeBuildings() {
-    const rng = new Phaser.Math.RandomDataGenerator(['buildings_sprint1']);
-    const positions = [
-      { x: 300, y: 300 },
-      { x: WORLD_WIDTH - 300, y: 300 },
-      { x: 300, y: WORLD_HEIGHT - 300 },
-      { x: WORLD_WIDTH - 300, y: WORLD_HEIGHT - 300 },
-    ];
-
-    for (let i = 0; i < BUILDING_COUNT; i++) {
-      const pos = positions[i % positions.length];
-      const offsetX = rng.integerInRange(-50, 50);
-      const offsetY = rng.integerInRange(-50, 50);
-      const building = this.physics.add.staticImage(
-        pos.x + offsetX, pos.y + offsetY, 'buildings',
-      );
-      building.setScale(0.25);
-      building.setSize(building.width * 0.5, building.height * 0.3);
-      building.setOffset(building.width * 0.25, building.height * 0.65);
-      building.refreshBody();
-      building.setDepth(pos.y + offsetY);
+      placed.push({ x: tx, y: ty });
     }
   }
 
   placeRocks() {
     const rng = new Phaser.Math.RandomDataGenerator(['rocks_sprint1']);
     const safeZone = 150;
+    const minSeparation = 80;
+    const placed = [];
+    let attempts = 0;
 
-    for (let i = 0; i < ROCK_COUNT; i++) {
+    const gfx = this.add.graphics();
+    gfx.fillStyle(ROCK_COLOR, 1);
+    gfx.fillEllipse(16, 12, 32, 24);
+    gfx.fillStyle(0x6a6a6a, 0.5);
+    gfx.fillEllipse(14, 10, 18, 12);
+    gfx.generateTexture('rock_tex', 32, 24);
+    gfx.destroy();
+
+    for (let i = 0; i < ROCK_COUNT && attempts < 300; i++) {
       let rx, ry;
-      do {
-        rx = rng.integerInRange(50, WORLD_WIDTH - 50);
-        ry = rng.integerInRange(50, WORLD_HEIGHT - 50);
-      } while (
-        Phaser.Math.Distance.Between(rx, ry, WORLD_WIDTH / 2, WORLD_HEIGHT / 2) < safeZone
-      );
+      let valid = false;
 
-      const rock = this.physics.add.staticImage(rx, ry, 'rocks');
-      rock.setScale(Phaser.Math.FloatBetween(0.08, 0.15));
-      rock.setSize(rock.width * 0.4, rock.height * 0.25);
-      rock.setOffset(rock.width * 0.3, rock.height * 0.7);
+      while (!valid && attempts < 300) {
+        rx = rng.integerInRange(60, WORLD_WIDTH - 60);
+        ry = rng.integerInRange(60, WORLD_HEIGHT - 60);
+        attempts++;
+
+        const inSafeZone = Phaser.Math.Distance.Between(
+          rx, ry, WORLD_WIDTH / 2, WORLD_HEIGHT / 2,
+        ) < safeZone;
+
+        if (!inSafeZone && !this.isOccupied(rx, ry, minSeparation, placed)) {
+          valid = true;
+        }
+      }
+
+      if (!valid) continue;
+
+      const scale = rng.realBetween(0.6, 1.2);
+      const rock = this.physics.add.staticImage(rx, ry, 'rock_tex');
+      rock.setScale(scale);
+      rock.setSize(24, 16);
+      rock.setOffset(4, 8);
       rock.refreshBody();
       rock.setDepth(ry);
+      placed.push({ x: rx, y: ry });
     }
   }
 }

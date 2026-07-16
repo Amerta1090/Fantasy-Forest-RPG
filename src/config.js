@@ -11,7 +11,6 @@ export const COMPANION_FOLLOW_DELAY = 20;
 export const CAMERA_DEADZONE = 50;
 
 export const TREE_COUNT = 30;
-export const BUILDING_COUNT = 4;
 export const ROCK_COUNT = 12;
 
 export const KEYBINDS = {

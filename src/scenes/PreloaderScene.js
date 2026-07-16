@@ -137,17 +137,13 @@ export default class PreloaderScene extends Phaser.Scene {
       SPRITE_FRAMES.companionWalk,
     );
 
-    // ── Tiles, trees, HUD ──
-    this.load.image('tiles', asset('Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png'));
-    this.load.image('buildings', asset('Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png'));
-    this.load.image('rocks', asset('Legacy-Fantasy - High Forest 2.3/Assets/Props-Rocks.png'));
+    // ── Trees, HUD ──
     this.load.image('hud_base', asset('Legacy-Fantasy - High Forest 2.3/HUD/Base-01.png'));
     this.load.image('tree_green', asset('Legacy-Fantasy - High Forest 2.3/Trees/Green-Tree.png'));
     this.load.image('tree_dark', asset('Legacy-Fantasy - High Forest 2.3/Trees/Dark-Tree.png'));
     this.load.image('tree_red', asset('Legacy-Fantasy - High Forest 2.3/Trees/Red-Tree.png'));
     this.load.image('tree_yellow', asset('Legacy-Fantasy - High Forest 2.3/Trees/Yellow-Tree.png'));
     this.load.image('tree_golden', asset('Legacy-Fantasy - High Forest 2.3/Trees/Golden-Tree.png'));
-    this.load.image('bg_forest', asset('Legacy-Fantasy - High Forest 2.3/Trees/Background.png'));
   }
 
   create() {

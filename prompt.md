@@ -277,7 +277,7 @@ Fix this.
 ---
 
 ## Last Updated
-- Sprint: 1 (done)
+- Sprint: 2 (done)
 - Date: 2026-07-16
 - Skills registered: 12
 - Prompts: 10 (9 sprint + 1 recurring template)

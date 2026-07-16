@@ -120,16 +120,16 @@ Explore Forest → Encounter Enemies (Wave) → Fight → Collect Loot (Icons)
 ### Sprint 2: Combat System (3 hari)
 **Goal:** Player bisa attack, enemy spawn & fight
 
-| Task | Detail | Skills |
-|------|--------|--------|
-| Basic attack | Attack1 animasi + hitbox detection | phaser-arcade-physics |
-| Enemy: Boar | Idle → Run → attack player, HP system | phaser-arcade-physics |
-| Enemy: Bee | Fly pattern → ranged attack, HP system | phaser-arcade-physics |
-| Enemy: Snail | Slow walk → hide (invuln) → emerge, HP system | phaser-arcade-physics |
-| Damage system | Damage calculation, knockback, i-frames | game-feel |
-| Death animasi | pakai `Dead-Sheet.png` untuk semua character | phaser-core |
-| Hit feedback | Screen shake, flash white, knockback | game-feel |
-| Loot drop | Enemies drop items (pilih dari Raven Icons) | procedural-gen |
+| Task | Detail | Skills | Done |
+|------|--------|--------|------|
+| Basic attack | Attack1 animasi + hitbox detection | phaser-arcade-physics | ✅ |
+| Enemy: Boar | Idle → Run → attack player, HP system | phaser-arcade-physics | ✅ |
+| Enemy: Bee | Fly pattern → ranged attack, HP system | phaser-arcade-physics | ✅ |
+| Enemy: Snail | Slow walk → hide (invuln) → emerge, HP system | phaser-arcade-physics | ✅ |
+| Damage system | Damage calculation, knockback, i-frames | game-feel | ✅ |
+| Death animasi | pakai `Dead-Sheet.png` untuk semua character | phaser-core | ✅ |
+| Hit feedback | Screen shake, flash white, knockback | game-feel | ✅ |
+| Loot drop | Enemies drop items (pilih dari Raven Icons) | procedural-gen | ✅ |
 
 **Deliverable:** 3 tipe enemy aktif, combat jalan, loot drop, feedback mantap.
 

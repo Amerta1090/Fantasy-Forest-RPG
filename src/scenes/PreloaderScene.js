@@ -92,24 +92,24 @@ export default class PreloaderScene extends Phaser.Scene {
     // ── Boar mob ──
     this.load.spritesheet(
       'boar_idle',
-      asset('Legacy-Fantasy - High Forest 2.3/Mob/Boar/Idle/Idle-Sheet.png'),
+      asset('Legacy-Fantasy - High Forest 2.3/Mob/Boar/Idle/Idle-Sheet-fixed.png'),
       SPRITE_FRAMES.boarIdle,
     );
     this.load.spritesheet(
       'boar_run',
-      asset('Legacy-Fantasy - High Forest 2.3/Mob/Boar/Run/Run-Sheet.png'),
+      asset('Legacy-Fantasy - High Forest 2.3/Mob/Boar/Run/Run-Sheet-fixed.png'),
       SPRITE_FRAMES.boarRun,
     );
 
     // ── Small Bee mob ──
     this.load.spritesheet(
       'bee_fly',
-      asset('Legacy-Fantasy - High Forest 2.3/Mob/Small Bee/Fly/Fly-Sheet.png'),
+      asset('Legacy-Fantasy - High Forest 2.3/Mob/Small Bee/Fly/Fly-Sheet-fixed.png'),
       SPRITE_FRAMES.beeFly,
     );
     this.load.spritesheet(
       'bee_attack',
-      asset('Legacy-Fantasy - High Forest 2.3/Mob/Small Bee/Attack/Attack-Sheet.png'),
+      asset('Legacy-Fantasy - High Forest 2.3/Mob/Small Bee/Attack/Attack-Sheet-fixed.png'),
       SPRITE_FRAMES.beeAttack,
     );
 
@@ -123,6 +123,25 @@ export default class PreloaderScene extends Phaser.Scene {
       'snail_dead',
       asset('Legacy-Fantasy - High Forest 2.3/Mob/Snail/Dead-Sheet.png'),
       SPRITE_FRAMES.snailDead,
+    );
+    this.load.spritesheet(
+      'snail_hide',
+      asset('Legacy-Fantasy - High Forest 2.3/Mob/Snail/Hide-Sheet.png'),
+      SPRITE_FRAMES.snailWalk,
+    );
+
+    // ── Boar hit ──
+    this.load.spritesheet(
+      'boar_hit',
+      asset('Legacy-Fantasy - High Forest 2.3/Mob/Boar/Hit-Vanish/Hit-Sheet-fixed.png'),
+      SPRITE_FRAMES.boarIdle,
+    );
+
+    // ── Bee hit ──
+    this.load.spritesheet(
+      'bee_hit',
+      asset('Legacy-Fantasy - High Forest 2.3/Mob/Small Bee/Hit/Hit-Sheet-fixed.png'),
+      SPRITE_FRAMES.beeFly,
     );
 
     // ── Companion sprites ──
@@ -143,6 +162,18 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('tree_red', asset('Legacy-Fantasy - High Forest 2.3/Trees/Red-Tree.png'));
     this.load.image('tree_yellow', asset('Legacy-Fantasy - High Forest 2.3/Trees/Yellow-Tree.png'));
     this.load.image('tree_golden', asset('Legacy-Fantasy - High Forest 2.3/Trees/Golden-Tree.png'));
+
+    // ── Loot icons (Raven Fantasy Icons 64x64) ──
+    const lootIds = [
+      'fc52', 'fc67', 'fc131', 'fc133', 'fc136', 'fc169', 'fc171', 'fc189',
+      'fc220', 'fc237', 'fc245', 'fc246', 'fc277', 'fc285', 'fc305', 'fc306',
+      'fc321', 'fc340', 'fc370', 'fc446', 'fc452', 'fc462', 'fc463', 'fc466',
+      'fc470', 'fc476', 'fc477', 'fc506', 'fc526', 'fc527', 'fc551', 'fc567',
+    ];
+    const ravenBase = 'Free - Raven Fantasy Icons/Free - Raven Fantasy Icons/Separated Files/64x64/';
+    lootIds.forEach((id) => {
+      this.load.image(id, asset(`${ravenBase}${id}.png`));
+    });
   }
 
   create() {
@@ -236,6 +267,27 @@ export default class PreloaderScene extends Phaser.Scene {
       key: 'snail_dead',
       frames: this.anims.generateFrameNumbers('snail_dead', { start: 0, end: 8 }),
       frameRate: 8,
+      repeat: 0,
+    });
+
+    this.anims.create({
+      key: 'snail_hide',
+      frames: this.anims.generateFrameNumbers('snail_hide', { start: 0, end: 5 }),
+      frameRate: 6,
+      repeat: 0,
+    });
+
+    this.anims.create({
+      key: 'boar_hit',
+      frames: this.anims.generateFrameNumbers('boar_hit', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: 0,
+    });
+
+    this.anims.create({
+      key: 'bee_hit',
+      frames: this.anims.generateFrameNumbers('bee_hit', { start: 0, end: 5 }),
+      frameRate: 10,
       repeat: 0,
     });
 

@@ -35,7 +35,7 @@ export default class MainMenuScene extends Phaser.Scene {
       this.scene.start('game');
     });
 
-    this.add.text(GAME_WIDTH / 2, 540, 'Sprint 1 — Movement & World', {
+    this.add.text(GAME_WIDTH / 2, 540, 'Sprint 2 — Combat System', {
       fontSize: '12px',
       color: '#666666',
     }).setOrigin(0.5);

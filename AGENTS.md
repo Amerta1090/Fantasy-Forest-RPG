@@ -136,7 +136,7 @@ nyobagame simple/
 |--------|--------|-----------|-------|
 | 0 | ✅ DONE | 2026-07-16 | Vite+Phaser3 setup, 4 scenes, all assets loaded, player+companion |
 | 1 | ✅ DONE | 2026-07-16 | Tilemap, collision, camera deadzone, gamepad, companion follow |
-| 2 | ⏳ PENDING | — | — |
+| 2 | ✅ DONE | 2026-07-16 | Combat system: 3 enemy types, damage calc, hit feedback, loot drops |
 | 3 | ⏳ PENDING | — | — |
 | 4 | ⏳ PENDING | — | Skill tree — core feature |
 | 5 | ⏳ PENDING | — | — |

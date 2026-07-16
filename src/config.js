@@ -21,6 +21,56 @@ export const KEYBINDS = {
   attack: ['SPACE'],
 };
 
+export const PLAYER_MAX_HP = 100;
+export const PLAYER_ATTACK = 15;
+export const PLAYER_DEFENSE = 5;
+export const IFRAME_DURATION = 500;
+export const KNOCKBACK_FORCE = 200;
+export const ATTACK_RANGE = 45;
+export const ATTACK_ARC = Math.PI / 2;
+
+export const ENEMY_TYPES = {
+  boar: {
+    hp: 40,
+    attack: 10,
+    defense: 3,
+    speed: 80,
+    aggroRange: 200,
+    attackRange: 30,
+    xpReward: 15,
+    goldDrop: [1, 3],
+  },
+  bee: {
+    hp: 20,
+    attack: 8,
+    defense: 1,
+    speed: 100,
+    aggroRange: 250,
+    attackRange: 150,
+    projectileSpeed: 200,
+    xpReward: 12,
+    goldDrop: [1, 2],
+  },
+  snail: {
+    hp: 60,
+    attack: 12,
+    defense: 6,
+    speed: 40,
+    aggroRange: 150,
+    attackRange: 35,
+    hideDuration: 2000,
+    xpReward: 20,
+    goldDrop: [2, 5],
+  },
+};
+
+export const LOOT_ICONS = [
+  'fc52', 'fc67', 'fc131', 'fc133', 'fc136', 'fc169', 'fc171', 'fc189',
+  'fc220', 'fc237', 'fc245', 'fc246', 'fc277', 'fc285', 'fc305', 'fc306',
+  'fc321', 'fc340', 'fc370', 'fc446', 'fc452', 'fc462', 'fc463', 'fc466',
+  'fc470', 'fc476', 'fc477', 'fc506', 'fc526', 'fc527', 'fc551', 'fc567',
+];
+
 export const SPRITE_FRAMES = {
   player: {
     frameWidth: 96,
